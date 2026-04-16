@@ -5,6 +5,7 @@ import HeroBanner from "@/components/landing/HeroBanner";
 import MediaGrid from "@/components/landing/MediaGrid";
 import ProblemSection from "@/components/landing/ProblemSection";
 import AudienceSection from "@/components/landing/AudienceSection";
+import SolutionSection from "@/components/landing/SolutionSection";
 import BenefitsSection from "@/components/landing/BenefitsSection";
 import AboutSection from "@/components/landing/AboutSection";
 import FinalCTA from "@/components/landing/FinalCTA";
@@ -34,9 +35,10 @@ const Index = () => {
       <Hero />
       <HeroBanner />
       <MediaGrid />
-      <ProblemSection />
-      <AudienceSection />
-      <BenefitsSection />
+        <ProblemSection />
+        <SolutionSection />
+        <AudienceSection />
+        <BenefitsSection />
       <AboutSection />
       <FinalCTA />
       <Footer />
