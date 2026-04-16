@@ -17,8 +17,10 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full bg-background/90 backdrop-blur transition-shadow ${
-        scrolled ? "shadow-sm border-b border-border" : ""
+      className={`sticky top-0 z-50 w-full transition-all ${
+        scrolled
+          ? "bg-background/90 backdrop-blur shadow-sm border-b border-border"
+          : "bg-transparent"
       }`}
     >
       <div className="container-tight flex h-16 items-center justify-between">
