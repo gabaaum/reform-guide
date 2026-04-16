@@ -16,8 +16,8 @@ const AudienceSection = () => {
   return (
     <section className="bg-surface-alt py-20 md:py-28">
       <div className="container-tight">
-        <div className="reveal mx-auto max-w-2xl text-center">
-          <h2 className="font-serif text-3xl text-secondary sm:text-4xl md:text-5xl whitespace-nowrap">
+        <div className="reveal mx-auto max-w-3xl text-center">
+          <h2 className="font-serif text-2xl text-secondary sm:text-4xl md:text-5xl whitespace-nowrap">
             Para quem é (e para quem não é)
           </h2>
           <p className="mt-4 text-muted-foreground">
