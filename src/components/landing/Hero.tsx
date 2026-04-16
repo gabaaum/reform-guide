@@ -41,11 +41,11 @@ const Hero = () => {
         </div>
 
         {/* Desktop image (full-bleed, full height) */}
-        <div className="reveal hidden lg:block">
+        <div className="hidden lg:block relative min-h-screen">
           <img
             src={sociosImg}
             alt="Sócios Porto & Perottoni"
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
           />
         </div>
