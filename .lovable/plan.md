@@ -1,28 +1,29 @@
 
-O usuário quer que eu coloque a foto dos sócios da Porto & Perottoni (gerada pelo Gemini) na seção Hero da landing page, no estilo da referência Saúde Pelve: foto à direita, formulário e texto à esquerda.
+The user wants the partners' photo to fill the screen like the reference (Saúde Pelve style) — full-bleed hero with the image on the right occupying the full height of the viewport, and the form/text on the left also filling the viewport height.
 
-Atualmente o Hero tem o formulário centralizado. Preciso reestruturar para um layout 2 colunas (texto+form à esquerda, imagem à direita) no desktop, empilhando no mobile.
+Currently the Hero has `pt-12 pb-20` padding and uses `container-tight` which constrains width and adds vertical padding. The image just sits inside a column at natural size.
 
-# Plano: Foto dos sócios no Hero (estilo Saúde Pelve)
+# Plano: Hero full-screen com foto ocupando altura total
 
-## O que vou fazer
+## O que vou mudar em `Hero.tsx`
 
-1. **Salvar a imagem** dos sócios em `src/assets/socios-porto-perottoni.jpg` (copiando do upload).
+1. **Section full-height:** trocar padding atual por `min-h-screen` e remover `container-tight` do grid externo, usando grid de 2 colunas que ocupa 100% da largura no desktop (`lg:grid-cols-2`).
 
-2. **Reestruturar o `Hero.tsx`** para layout 2 colunas no desktop:
-   - **Coluna esquerda:** badge turquesa "EVENTO ONLINE E GRATUITO", título serif, subtítulo, parágrafo e o `LeadForm` (igual hoje, mas alinhado à esquerda em vez de centralizado).
-   - **Coluna direita:** foto dos 3 sócios em destaque, com cantos arredondados e leve sombra, ocupando altura cheia da seção.
-   - **Mobile:** colunas empilham — texto+form em cima, foto embaixo (ou escondida em telas muito pequenas para priorizar conversão, a definir no build).
+2. **Coluna esquerda (texto + form):**
+   - Conteúdo dentro de um wrapper com padding lateral generoso (`px-6 lg:px-16 xl:px-24`) e `max-w-xl` para legibilidade.
+   - Centralizado verticalmente (`flex flex-col justify-center`).
 
-3. **Ajustar espaçamento e tipografia** para acomodar o novo layout (título um pouco menor, container mais largo).
+3. **Coluna direita (foto):**
+   - Imagem com `h-full w-full object-cover` para preencher toda a coluna até as bordas da tela.
+   - Sem `rounded-2xl` nem `shadow-elegant` (full-bleed, igual referência).
+   - Esconde no mobile (`hidden lg:block`) — no mobile a imagem aparece acima do form como hoje, mas com `h-[60vh] object-cover` para também ocupar bem a tela.
 
-4. **Manter** todo o resto da página intacto (HeroBanner, MediaGrid, etc).
+4. **Mobile:** seção continua empilhada — imagem em destaque no topo (altura 50–60vh, full width, sem cantos arredondados) e texto+form abaixo com padding normal.
 
-## Arquivos afetados
+## Arquivo afetado
 
-- `src/assets/socios-porto-perottoni.jpg` (novo — copiado do upload)
-- `src/components/landing/Hero.tsx` (reestruturado para 2 colunas)
+- `src/components/landing/Hero.tsx`
 
 ## Fora do escopo
 
-- Substituir a imagem placeholder da seção `AboutSection` (posso fazer depois se quiser usar a mesma foto lá também).
+- Mexer em outras seções (HeroBanner, MediaGrid, etc).
