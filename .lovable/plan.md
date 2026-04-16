@@ -1,36 +1,27 @@
 
-O usuário quer trocar os 4 cards textuais do `MediaGrid` por screenshots reais das matérias (3 prints anexados) — removendo o card da Gazeta do Povo. Manter a proporção do grid atual (1 card grande + 2 menores agora).
+O usuário quer:
+1. Card 2 (Senado) não está mostrando o título — provavelmente porque o `object-cover` em altura de 180px está cortando o topo da imagem.
+2. Card 3 (Testes 2026) deve ter o mesmo tamanho do Card 2.
 
-# Plano: Substituir cards textuais por screenshots no MediaGrid
+Atualmente o grid é:
+- Card 1: `md:col-span-2 md:row-span-2` (grande, ocupa 2 linhas de 180px = 360px)
+- Card 2: `md:col-span-2` (1 linha de 180px)
+- Card 3: sem span (1 col × 1 linha de 180px)
 
-## 1. Adicionar imagens ao projeto
+# Plano: Ajustar MediaGrid para mostrar manchete completa
 
-Copiar os 3 prints para `src/assets/`:
-- `user-uploads://image-8.png` → `src/assets/midia-iva-28.png` (Agência Brasil — IVA 28,55%)
-- `user-uploads://image-9.png` → `src/assets/midia-senado.png` (Senado — comércio e serviços)
-- `user-uploads://image-10.png` → `src/assets/midia-testes-2026.png` (Agência Brasil — testes 2026)
+## Mudanças em `MediaGrid.tsx`
 
-## 2. Reescrever `MediaGrid.tsx`
+1. **Card 3 igual ao Card 2:** mudar span do card 3 para `md:col-span-2`. Assim card 2 e card 3 dividem a linha de baixo (cada um col-span-2), espelhando largura/altura.
 
-- Importar as 3 imagens.
-- Remover o array atual de 4 cards textuais (incluindo Gazeta do Povo).
-- Criar grid com 3 cards-imagem mantendo a proporção/destaque atual:
-  - Card grande (destaque): IVA 28,55% — `md:col-span-2 md:row-span-2`
-  - Card médio: Senado — `md:col-span-2`
-  - Card pequeno: Testes 2026 — sem span extra
-  - Total: `md:grid-cols-4` mantém-se; remover o 4º slot.
-- Cada card vira um `<article>` com `<img>` `object-cover w-full h-full`, `rounded-2xl`, `border border-border`, `shadow-card`, `overflow-hidden`, e mantém o hover `hover:-translate-y-1 hover:shadow-card`.
-- Manter o `auto-rows-[180px]` para preservar a altura dos slots.
-- Manter o título e o parágrafo introdutórios da seção, sem alterações.
+2. **Mostrar manchete completa:** trocar `object-cover` por `object-contain` nos cards (especialmente os menores), OU aumentar `auto-rows` para permitir que `object-cover` mostre a manchete sem cortar. Vou usar `object-contain` com fundo neutro (`bg-card`) para garantir que o título inteiro apareça em qualquer card, mantendo a proporção original do print.
+
+3. Manter hover, bordas e sombras como estão.
 
 ## Arquivos afetados
 
-- `src/assets/midia-iva-28.png` (novo)
-- `src/assets/midia-senado.png` (novo)
-- `src/assets/midia-testes-2026.png` (novo)
-- `src/components/landing/MediaGrid.tsx` (refatorar para usar imagens)
+- `src/components/landing/MediaGrid.tsx`
 
 ## Fora do escopo
 
-- Adicionar legendas/fontes sobrepostas nas imagens (os prints já trazem manchete e fonte).
-- Mexer em outras seções.
+- Recortar/editar as imagens originais.
