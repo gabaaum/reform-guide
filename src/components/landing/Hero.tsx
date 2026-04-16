@@ -3,16 +3,18 @@ import sociosImg from "@/assets/socios-porto-perottoni.png";
 
 const Hero = () => {
   return (
-    <section className="bg-background lg:min-h-screen">
+    <section className="bg-[hsl(30_25%_96%)] lg:min-h-screen">
       <div className="grid lg:grid-cols-2 lg:min-h-screen">
         {/* Mobile image (full-bleed, no rounded corners) */}
-        <div className="lg:hidden">
+        <div className="relative lg:hidden">
           <img
             src={sociosImg}
             alt="Sócios Porto & Perottoni"
             className="h-[55vh] w-full object-cover"
             loading="eager"
           />
+          {/* Gradient blend into section background */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[hsl(30_25%_96%)]" />
         </div>
 
         {/* Left column: text + form */}
@@ -48,6 +50,8 @@ const Hero = () => {
             className="absolute inset-0 h-full w-full object-cover object-center"
             loading="eager"
           />
+          {/* Soft gradient on the left edge to blend with the form column */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[hsl(30_25%_96%)] to-transparent z-10" />
         </div>
       </div>
     </section>
