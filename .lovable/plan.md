@@ -1,50 +1,28 @@
 
+O usuário quer que eu coloque a foto dos sócios da Porto & Perottoni (gerada pelo Gemini) na seção Hero da landing page, no estilo da referência Saúde Pelve: foto à direita, formulário e texto à esquerda.
 
-# Landing Page: Webinário Reforma Tributária — Porto & Perottoni
+Atualmente o Hero tem o formulário centralizado. Preciso reestruturar para um layout 2 colunas (texto+form à esquerda, imagem à direita) no desktop, empilhando no mobile.
 
-Vou construir uma landing page de alta conversão para captura de leads do webinário gratuito sobre Reforma Tributária, seguindo o design system especificado (inspiração Saúde Pelve + identidade Porto & Perottoni).
+# Plano: Foto dos sócios no Hero (estilo Saúde Pelve)
 
-## Design System
+## O que vou fazer
 
-- **Cores:** Turquesa `#31b9bd` (primária/CTAs), Grafite `#2d2d2d` (texto/secundária), Branco e Cinza ultra-claro `#F9F9F9` (alternância de fundos)
-- **Tipografia:** Serif editorial (Playfair Display) para títulos + Inter sans-serif para corpo
-- **Estilo:** Clean, alto contraste, profissional, com bastante respiro entre seções
+1. **Salvar a imagem** dos sócios em `src/assets/socios-porto-perottoni.jpg` (copiando do upload).
 
-## Estrutura da Página (single-page, scroll vertical)
+2. **Reestruturar o `Hero.tsx`** para layout 2 colunas no desktop:
+   - **Coluna esquerda:** badge turquesa "EVENTO ONLINE E GRATUITO", título serif, subtítulo, parágrafo e o `LeadForm` (igual hoje, mas alinhado à esquerda em vez de centralizado).
+   - **Coluna direita:** foto dos 3 sócios em destaque, com cantos arredondados e leve sombra, ocupando altura cheia da seção.
+   - **Mobile:** colunas empilham — texto+form em cima, foto embaixo (ou escondida em telas muito pequenas para priorizar conversão, a definir no build).
 
-1. **Header sticky** — Logo "Porto & Perottoni" à esquerda + botão discreto "Garantir minha vaga" à direita (rola até o formulário)
+3. **Ajustar espaçamento e tipografia** para acomodar o novo layout (título um pouco menor, container mais largo).
 
-2. **Hero (fundo branco)** — Badge turquesa "EVENTO ONLINE E GRATUITO", título serif grande, subtítulo em negrito, parágrafo de apoio, e formulário de captura (Nome, E-mail, WhatsApp) com CTA turquesa "QUERO ACESSAR AGORA" + trust badge de cadeado
+4. **Manter** todo o resto da página intacto (HeroBanner, MediaGrid, etc).
 
-3. **Bento Grid de Mídia (fundo #F9F9F9)** — Título "O que a mídia está alertando", 4 cards com manchetes (Agência Brasil, Senado, EBC, Gazeta do Povo) em layout assimétrico tipo bento
+## Arquivos afetados
 
-4. **O Problema / A Transição (fundo branco)** — Texto editorial forte sobre os pain points, com 3 perguntas-chave em destaque
+- `src/assets/socios-porto-perottoni.jpg` (novo — copiado do upload)
+- `src/components/landing/Hero.tsx` (reestruturado para 2 colunas)
 
-5. **Para quem é / Não é (fundo #F9F9F9)** — Duas colunas comparativas com ✅ verde-turquesa e ❌ cinza
+## Fora do escopo
 
-6. **O que você vai conquistar (fundo branco)** — Checklist com 4 itens, ícones turquesa e títulos em destaque
-
-7. **Sobre a Porto & Perottoni (fundo #F9F9F9)** — Layout 2 colunas: imagem (placeholder do escritório/sócios) à esquerda, texto institucional à direita
-
-8. **CTA Final (fundo turquesa #31b9bd)** — Headline impactante em branco + formulário final de captura + footer com copyright
-
-## Comportamento e Interações
-
-- Header fica sticky ao rolar com leve sombra
-- Botão do header e CTAs principais fazem smooth-scroll até o formulário do hero
-- Formulários validam campos (obrigatórios + formato e-mail) e disparam toast de sucesso ao enviar (mock — sem backend nesta versão)
-- Animações sutis de fade-in nas seções ao entrar em viewport
-- Totalmente responsivo (mobile-first): grid colapsa para 1 coluna, tipografia escala
-
-## Arquivos a criar/modificar
-
-- `tailwind.config.ts` — adicionar fontes serif/sans e tokens
-- `src/index.css` — atualizar variáveis HSL (primary turquesa, etc.) + import Google Fonts
-- `src/pages/Index.tsx` — composição da landing
-- `src/components/landing/` — componentes: `Header`, `Hero`, `LeadForm`, `MediaGrid`, `ProblemSection`, `AudienceSection`, `BenefitsSection`, `AboutSection`, `FinalCTA`, `Footer`
-- `index.html` — atualizar `<title>` e meta description para SEO
-
-## Fora do escopo desta versão
-
-- Integração real de backend para os formulários (leads ficam apenas em toast/console). Pode ser adicionado depois com Lovable Cloud + tabela de leads + edge function de envio.
-
+- Substituir a imagem placeholder da seção `AboutSection` (posso fazer depois se quiser usar a mesma foto lá também).
