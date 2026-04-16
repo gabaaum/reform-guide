@@ -3,10 +3,10 @@ import sociosImg from "@/assets/socios-porto-perottoni.png";
 
 const Hero = () => {
   return (
-    <section className="bg-[hsl(30_25%_96%)] lg:min-h-screen">
-      <div className="grid lg:grid-cols-2 lg:min-h-screen">
+    <section className="-mt-16 bg-[hsl(30_25%_96%)] lg:min-h-screen">
+      <div className="grid lg:grid-cols-2 lg:min-h-screen lg:pt-16">
         {/* Mobile image (full-bleed, no rounded corners) */}
-        <div className="relative lg:hidden">
+        <div className="relative lg:hidden pt-16">
           <img
             src={sociosImg}
             alt="Sócios Porto & Perottoni"
