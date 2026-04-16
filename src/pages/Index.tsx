@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
+import HeroBanner from "@/components/landing/HeroBanner";
 import MediaGrid from "@/components/landing/MediaGrid";
 import ProblemSection from "@/components/landing/ProblemSection";
 import AudienceSection from "@/components/landing/AudienceSection";
@@ -31,6 +32,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Header />
       <Hero />
+      <HeroBanner />
       <MediaGrid />
       <ProblemSection />
       <AudienceSection />
