@@ -1,25 +1,26 @@
 
-A foto fica com borda visível porque a coluna esquerda é branca pura e a foto tem fundo bege claro do sofá. Para criar o efeito de "continuação" da referência, vou:
+O usuário quer que o Header (logo "Porto&Perottoni" + botão "Garantir minha vaga") fique sobreposto ao gradiente do Hero, em vez de ser uma faixa branca separada acima dele.
 
-# Plano: Transição suave entre form e foto no Hero
+Hoje o `Header` é `sticky top-0` com `bg-background/90 backdrop-blur` — uma faixa branca opaca que empurra o Hero para baixo. Preciso fazer com que ele fique transparente e por cima do Hero (que tem fundo creme), parecendo parte do mesmo bloco visual.
 
-## O que vou mudar em `Hero.tsx`
+# Plano: Header sobre o gradiente do Hero
 
-1. **Fundo da seção:** trocar `bg-background` (branco puro) por um tom bege/cream muito sutil que combine com o fundo da foto dos sócios — usar um custom inline com `bg-[hsl(30_25%_96%)]` (creme/off-white quente) na seção inteira.
+## Mudanças em `Header.tsx`
 
-2. **Gradiente de transição na borda da foto (desktop):** adicionar um overlay absoluto na coluna da imagem com gradiente horizontal indo da cor de fundo (à esquerda) para transparente (à direita), aplicado nos primeiros ~80-120px da foto. Isso "dissolve" a borda esquerda da imagem no fundo do form, criando a sensação de continuidade.
-   ```
-   <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[hsl(30_25%_96%)] to-transparent z-10" />
-   ```
+1. **Fundo transparente no topo:** quando `scrolled === false`, usar `bg-transparent` (sem backdrop-blur, sem borda). Assim o creme do Hero "vaza" por trás do logo + botão, parecendo um bloco só.
+2. **Fundo sólido ao rolar:** quando `scrolled === true`, manter `bg-background/90 backdrop-blur shadow-sm border-b` para legibilidade quando o usuário descer a página.
+3. **Manter `sticky top-0 z-50`** para o header continuar acessível ao rolar.
 
-3. **Form com fundo translúcido:** o `LeadForm` (variant light) hoje usa `bg-card` (branco). Como está dentro de um wrapper, basta o fundo da seção mudar — o card branco do form ainda funciona como destaque, igual à referência (form branco "flutuando" sobre fundo creme).
+## Mudanças em `Hero.tsx`
 
-4. **Mobile:** manter a imagem full-width no topo, mas adicionar um pequeno gradiente na base da imagem indo para o fundo creme, para suavizar a transição vertical também.
+1. **Compensar o header sobreposto:** como o header agora fica "por cima" do Hero, a section precisa começar no topo da viewport. Trocar `lg:min-h-screen` por algo que considere a altura do header (`min-h-screen` já cobre, pois o sticky não empurra o conteúdo — o header fica dentro do mesmo espaço visual creme).
+2. Garantir que o conteúdo da coluna esquerda (form/texto) tenha padding-top suficiente no mobile pra não ficar atrás do logo (`pt-20` no wrapper mobile, ou ajustar via `pt-24 lg:pt-0` no container do texto).
 
 ## Arquivos afetados
 
-- `src/components/landing/Hero.tsx` — adicionar fundo creme na section + overlay gradiente sobre a foto
+- `src/components/landing/Header.tsx` — fundo transparente quando no topo
+- `src/components/landing/Hero.tsx` — pequeno ajuste de padding-top para não sobrepor conteúdo no mobile
 
 ## Fora do escopo
 
-- Mudar tokens globais de cor no `index.css` (a mudança é local ao Hero para não afetar outras seções)
+- Mudar cores do logo ou do botão (já contrastam bem com o creme do Hero).
