@@ -1,7 +1,7 @@
 const questions = [
-  "Quanto vai custar para cada cliente?",
-  "Quais operações ficam inviáveis?",
-  "Como apresentar clareza para quem depende da sua orientação?",
+  "Quanto vai custar para cada perfil de empresa?",
+  "Quais operações ficam mais caras?",
+  "Quais clientes precisam de atenção imediata?",
 ];
 
 const ProblemSection = () => {
@@ -16,11 +16,18 @@ const ProblemSection = () => {
           </h2>
           <div className="mt-8 space-y-5 text-lg text-muted-foreground">
             <p>
-              A Reforma Tributária é o maior redesenho fiscal que o Brasil já viveu. O problema é que a
-              maioria dos profissionais está tentando acompanhar do jeito de sempre.
+              A Reforma Tributária é o maior redesenho fiscal que o Brasil já viveu. Novos tributos, novas
+              regras de crédito, uma lógica completamente diferente de apuração — e tudo isso com um
+              cronograma de transição que já está em andamento.
+            </p>
+            <p>
+              O problema é que a maioria dos profissionais contábeis está tentando acompanhar essa
+              mudança do mesmo jeito de sempre: lendo legislação, assistindo lives genéricas, torcendo
+              para que alguém traduza o que realmente muda na operação dos clientes.
             </p>
             <p className="text-secondary font-semibold">
-              Só que desta vez, ler a lei não basta. O desafio está na operação.
+              Só que dessa vez, ler a lei não basta. Porque o desafio não está em entender o texto — está
+              em saber o que fazer com ele.
             </p>
           </div>
         </div>
@@ -35,6 +42,17 @@ const ProblemSection = () => {
               <p className="mt-3 font-semibold leading-snug">{q}</p>
             </div>
           ))}
+        </div>
+
+        <div className="reveal mt-10">
+          <p className="text-lg text-muted-foreground">
+            E o mais importante: como apresentar tudo isso de forma clara para quem depende da sua
+            orientação?
+          </p>
+          <p className="mt-4 text-lg font-semibold text-secondary">
+            Essa insegurança paralisa — e, enquanto você espera clareza, o mercado já está se
+            movimentando.
+          </p>
         </div>
       </div>
     </section>

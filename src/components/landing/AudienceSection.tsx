@@ -1,9 +1,11 @@
 import { Check, X } from "lucide-react";
 
 const forYou = [
-  "Contadores que atendem Simples, Presumido e Real.",
-  "Gestores que querem posicionar a equipe à frente.",
-  "Consultores que buscam um método claro de diagnóstico.",
+  "Contadores e profissionais contábeis que atendem empresas de diferentes regimes (Simples, Presumido e Real) e precisam entender os impactos específicos da Reforma em cada um deles.",
+  "Gestores de escritórios contábeis que querem posicionar sua equipe à frente da transição, e não atrás dela.",
+  "Consultores tributários que buscam um método claro para apresentar diagnósticos e planos de ação com segurança e credibilidade.",
+  "Profissionais que já leram sobre a Reforma, mas ainda sentem que falta um caminho prático para aplicar o que sabem na rotina dos seus clientes.",
+  "Quem entende que dominar a Reforma Tributária agora é uma vantagem competitiva — e que esperar pode custar relevância e contratos.",
 ];
 
 const notForYou = [

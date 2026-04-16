@@ -31,6 +31,11 @@ const MediaGrid = () => {
           <h2 className="mt-3 font-serif text-3xl text-secondary sm:text-4xl md:text-5xl">
             O que a mídia está alertando
           </h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Você já deve ter visto manchetes como essas. E provavelmente sentiu aquele desconforto de
+            quem sabe que algo grande está acontecendo, mas ainda não consegue medir exatamente o tamanho
+            do impacto.
+          </p>
         </div>
 
         <div className="reveal mt-12 grid auto-rows-[180px] grid-cols-1 gap-4 md:grid-cols-4">
