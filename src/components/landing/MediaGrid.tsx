@@ -1,23 +1,21 @@
+import midiaIva from "@/assets/midia-iva-28.png";
+import midiaSenado from "@/assets/midia-senado.png";
+import midiaTestes from "@/assets/midia-testes-2026.png";
+
 const cards = [
   {
-    headline: "IVA pode elevar carga para 28%",
-    source: "Agência Brasil",
+    src: midiaIva,
+    alt: "Manchete da Agência Brasil: Reforma tributária pode elevar IVA para 28,55%, estima relator",
     span: "md:col-span-2 md:row-span-2",
-    accent: true,
   },
   {
-    headline: "Perda de competitividade no setor de serviços",
-    source: "Senado Federal",
+    src: midiaSenado,
+    alt: "Manchete do Senado Federal: Reforma tributária — comércio e serviços apontam perda de competitividade e alta de preços",
     span: "md:col-span-2",
   },
   {
-    headline: "Testes começam em 2026",
-    source: "EBC",
-    span: "",
-  },
-  {
-    headline: "Novos impostos em Janeiro",
-    source: "Gazeta do Povo",
+    src: midiaTestes,
+    alt: "Manchete da Agência Brasil: Reforma tributária entra em fase de testes em 2026",
     span: "",
   },
 ];
@@ -42,18 +40,14 @@ const MediaGrid = () => {
           {cards.map((c, i) => (
             <article
               key={i}
-              className={`group flex flex-col justify-between rounded-2xl border border-border p-6 transition-all hover:-translate-y-1 hover:shadow-card ${
-                c.accent ? "bg-secondary text-secondary-foreground" : "bg-card text-card-foreground"
-              } ${c.span}`}
+              className={`group overflow-hidden rounded-2xl border border-border bg-card shadow-card transition-all hover:-translate-y-1 ${c.span}`}
             >
-              <div className="text-xs font-semibold uppercase tracking-wider opacity-70">{c.source}</div>
-              <h3
-                className={`font-serif leading-tight ${
-                  c.accent ? "text-2xl md:text-4xl" : "text-xl md:text-2xl"
-                }`}
-              >
-                "{c.headline}"
-              </h3>
+              <img
+                src={c.src}
+                alt={c.alt}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </article>
           ))}
         </div>
