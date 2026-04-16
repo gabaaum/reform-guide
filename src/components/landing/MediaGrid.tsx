@@ -16,7 +16,7 @@ const cards = [
   {
     src: midiaTestes,
     alt: "Manchete da Agência Brasil: Reforma tributária entra em fase de testes em 2026",
-    span: "",
+    span: "md:col-span-2",
   },
 ];
 
@@ -46,7 +46,7 @@ const MediaGrid = () => {
                 src={c.src}
                 alt={c.alt}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="h-full w-full bg-card object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </article>
           ))}
