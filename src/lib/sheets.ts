@@ -2,9 +2,9 @@ const SHEETY_URL =
   "https://api.sheety.co/35f7dca5d0a749d89507e33c6442aedc/leadsPortoPerottoni/página1";
 
 export type LeadPayload = {
-  name: string;
-  email: string;
-  whatsapp: string;
+  name?: string;
+  email?: string;
+  whatsapp?: string;
 };
 
 export async function submitLead({ name, email, whatsapp }: LeadPayload) {
