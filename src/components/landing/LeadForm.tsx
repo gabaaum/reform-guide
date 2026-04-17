@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { Lock, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { submitLead } from "@/lib/sheets";
 
 const leadSchema = z.object({
   name: z.string().trim().min(2, "Informe seu nome").max(100, "Nome muito longo"),
@@ -26,6 +28,7 @@ const LeadForm = ({ variant = "light", ctaLabel = "QUERO ACESSAR AGORA", id }: L
   const [values, setValues] = useState({ name: "", email: "", whatsapp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const isDark = variant === "dark";
 
@@ -42,14 +45,17 @@ const LeadForm = ({ variant = "light", ctaLabel = "QUERO ACESSAR AGORA", id }: L
     }
     setErrors({});
     setLoading(true);
-    // Mock submit — backend integration pending
-    console.log("[Lead capturado]", result.data);
-    await new Promise((r) => setTimeout(r, 700));
-    setLoading(false);
-    toast.success("Inscrição confirmada!", {
-      description: "Enviaremos o link de acesso em breve no seu e-mail.",
-    });
-    setValues({ name: "", email: "", whatsapp: "" });
+    try {
+      await submitLead(result.data);
+      navigate("/obrigado");
+    } catch (err) {
+      console.error("[Lead submit error]", err);
+      toast.error("Não foi possível enviar agora.", {
+        description: "Tente novamente em instantes.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass = isDark
