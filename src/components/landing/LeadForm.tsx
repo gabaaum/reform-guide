@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { Lock, Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -28,7 +27,6 @@ const LeadForm = ({ variant = "light", ctaLabel = "QUERO ACESSAR AGORA", id }: L
   const [values, setValues] = useState({ name: "", email: "", whatsapp: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const isDark = variant === "dark";
 
@@ -47,7 +45,7 @@ const LeadForm = ({ variant = "light", ctaLabel = "QUERO ACESSAR AGORA", id }: L
     setLoading(true);
     try {
       await submitLead(result.data);
-      navigate("/obrigado");
+      window.top!.location.href = "https://portoeperottoni.com.br/obrigado/";
     } catch (err) {
       console.error("[Lead submit error]", err);
       toast.error("Não foi possível enviar agora.", {
