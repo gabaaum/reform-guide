@@ -45,15 +45,12 @@ const LeadForm = ({ variant = "light", ctaLabel = "QUERO ACESSAR AGORA", id }: L
     setLoading(true);
     try {
       await submitLead(result.data);
-      window.top!.location.href = "https://portoeperottoni.com.br/obrigado/";
     } catch (err) {
       console.error("[Lead submit error]", err);
-      toast.error("Não foi possível enviar agora.", {
-        description: "Tente novamente em instantes.",
-      });
     } finally {
       setLoading(false);
     }
+    window.top!.location.href = "https://portoeperottoni.com.br/obrigado/";
   };
 
   const inputClass = isDark
